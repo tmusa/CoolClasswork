@@ -1,0 +1,138 @@
+
+// 				Tumsa Musa, M
+;
+//				James Eenhuis, E
+;
+
+// Item 1: Student names and Mentor Names;
+<showtext>
+$Saxon:> 
+<Item1 > {
+   for $e in doc("Coms363/UniversityDocs/Student.xml")//Student
+   let $s1 := doc("Coms363/UniversityDocs/Person.xml")//Person[ID = $e/StudentID]/Name
+   let $s2 := doc("Coms363/UniversityDocs/Person.xml")//Person[ID = $e/MentorID]/Name
+   return <Pair> { 
+	<StudentName>{$s1}</StudentName>, 
+	<MentorName>{$s2}</MentorName> 
+} </Pair>
+} </Item1>; 
+</showtext>
+
+
+// Item 2: Student names and Mentor Names;
+<showtext>
+$Saxon:> 
+<Item2 > {
+   for $c in distinct-values(doc("Coms363/UniversityDocs/Student.xml")//Student/Classification)
+   let $s1 := avg(doc("Coms363/UniversityDocs/Student.xml")//Student[Classification = $c]/GPA)
+   return <Pair> { 
+	<Classification>{$c}</Classification>,
+	<GPAavg>{$s1}</GPAavg>
+} </Pair>
+} </Item2>; 
+</showtext>
+
+
+// Item 3: For All Enrolled students Student names and Mentor Names;
+<showtext>
+$Saxon:> 
+<Item3 > {
+   for $e in distinct-values(doc("Coms363/UniversityDocs/Enrollment.xml")//Enrollment/StudentID)
+   let $s2 := doc("Coms363/UniversityDocs/Person.xml")//Person[ID = $e]/Name
+/text()
+   let $s1 := doc("Coms363/UniversityDocs/Student.xml")//Student[StudentID = $e]/MentorID
+   let $s3  := doc("Coms363/UniversityDocs/Person.xml")//Person[ID = $s1]/Name/text()
+   order by $s2
+   return	<Pair> {<Student>{$s2}</Student>, <Mentor>{$s3}</Mentor>} </Pair>
+} </Item3>; 
+</showtext>
+
+
+// Item 4: Names of Students with at least one 'A';
+<showtext>
+$Saxon:> 
+<Item4 > {
+   for $e in distinct-values(doc("Coms363/UniversityDocs/Enrollment.xml")//Enrollment[Grade="A"]/StudentID)
+   let $s2 := doc("Coms363/UniversityDocs/Person.xml")//Person[ID = $e]/Name
+   return $s2
+} </Item4>; 
+</showtext>
+
+
+// Item 5: List every prereq for CS311;
+
+<showtext>
+$Saxon:> 
+<Item5 > {
+   for $e in distinct-values(doc("Coms363/UniversityDocs/Course.xml")//Course[CourseCode="CS311"]/PreReq)
+   return <PreReq>{$e}</PreReq>
+} </Item5>; 
+</showtext>
+
+
+// Item 6: Restructure the Student.xml by classifcation ;
+<showtext>
+$Saxon:> 
+<Item6 > {
+   for $c in distinct-values(doc("Coms363/UniversityDocs/Student.xml")//Student/Classification)
+   return <Student> { <Classification> { 
+	$c, 
+	<StudentList>{
+		for $e in doc("Coms363/UniversityDocs/Student.xml")//Student[Classification= $c]
+		return <Student>{$e/StudentID, $e/GPA, $e/MentorID, $e/CreditHours}</Student>
+	}</StudentList>
+} 
+</Classification> } </Student>
+} </Item6>; 
+</showtext>
+
+//item 7 list Name, and Rank of faculty who have a salary of 100K or higher;
+
+<showtext>
+$OOXQuery:> 
+<Item7 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> {
+   for $e in doc("ComS363/UniversityDocs/UniversityOODB(ODMG).xml")//Faculty 
+   where $e.Salary > 100000
+   return <MDOB> { $e.Name, $e.Rank } </MDOB>
+} </Item7>;
+</showtext> 
+
+//Item 8 List Names of students and their mentors;
+
+<showtext>
+$OOXQuery:> 
+<Item8 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> {
+   for $e in doc("ComS363/UniversityDocs/UniversityOODB(ODMG).xml")//Student 
+   return <MDOB> { $e.Name, $e.Mentor.Name } </MDOB>
+} </Item8>;
+</showtext> 
+
+//Item 9 ;
+
+<showtext>
+$OOXQuery:> 
+<Item9 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> {
+
+   for $f in doc("ComS363/UniversityDocs/UniversityOODB(ODMG).xml")//Faculty 
+   return <FacultyMember> { 
+	$f.Name,
+	<StudentList>{
+		for $e in $f.Mentoring
+		return <Student>{$e.Name, $e.Classification, $e.GPA}</Student>
+	}</StudentList>
+}</FacultyMember>
+
+} </Item9>;
+</showtext> 
+
+//Item 10 For every Offering, list course name, section, and instructor name;
+
+<showtext>
+$OOXQuery:> 
+<Item10 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> {
+   for $e in doc("ComS363/UniversityDocs/UniversityOODB(ODMG).xml")//Offering
+   return <Offering> 
+   { $e.CourseInfo.CourseName, $e.Section,<Instructor>{$e.Instructor.Name/text()}</Instructor>} 
+   </Offering>
+} </Item10>;
+</showtext> 

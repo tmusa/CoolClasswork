@@ -1,0 +1,6 @@
+Student             | Mentor              | GPA                 
+Tom Moody           | Richard Ellison     | 3.96
+Sameer Shah         | John Bracewell      | 3.88
+Merv Hughes         | Darren Lehmann      | 3.88
+Martin Vasquez      | Seth Carney         | 3.87
+Jim Slater          | Min Tuyet           | 3.83

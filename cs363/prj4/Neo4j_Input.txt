@@ -1,0 +1,46 @@
+//									Authors: Tumsa Musa (M) & James Eenhuis (E)
+
+//Item 1
+Match (m:Faculty) -[:Mentors]-> (s:Student)
+Match (s) -[:S2P]->(student)
+Match (m) -[:F2P]->(mentor)
+Return student.Name as `student`, mentor.Name as `mentor`;
+
+//Item2
+Match (s:Student) 
+Where s.Classification= 'Sophomore' 
+Return avg(s.GPA) as `AvgGPA`;
+
+//Item3
+Match (s:Student) -[:Taking]-> (o:Offering)
+Match (m:Faculty) -[:Mentors]-> (s)
+Match (s) -[:S2P]->(student)
+Match (m) -[:F2P]->(mentor)
+Return distinct student.Name as `student`, mentor.Name as `mentor`;
+
+//Item4
+Match (s:Student) -[:Taking {Grade: 'A'}]-> (o:Offering)
+Match (s) -[:S2P]->(student)
+Return distinct student.Name  as `Student`;
+
+//Item5
+Match (:Course {CourseCode: 'CS311'}) -[:PreReq]-> (c:Course)
+Return distinct c.CourseCode as `CourseCode`;
+
+//Item 6
+Match (m:Faculty) -[:F2P]->(faculty)
+Where m.Salary >= 100000
+Return distinct  faculty.Name as `Faculty`, m.Rank as `Rank`;
+
+//Item 7
+Match (m:Faculty) -[:F2P]->(mentor:Person)
+Match (m) -[:Mentors]-> (s:Student)
+return mentor.Name as `Mentor`, s.Classification as `StdClass`, 
+s.GPA as `StdGPA`;
+
+//Item 8
+Match (m:Faculty) -[:F2P]->(f:Person)
+Match (m)-[:Offers]->(o:Offering) -[:Covers]->(c:Course)
+Match (s:Student) -[:Taking]-> (o)
+return f.Name as `Instructor`, c.CourseName as `Course Name`, o.Section as `Section`, count(s) as `Enrollment`
+
