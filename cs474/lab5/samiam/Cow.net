@@ -1,0 +1,160 @@
+net
+{
+	propagationenginegenerator1791944048146838126L = "edu.ucla.belief.approx.BeliefPropagationSettings@764db699";
+	recoveryenginegenerator6944530267470113528l = "edu.ucla.util.SettingsImpl@77ee1c31";
+	node_size = (130 55);
+}
+
+node test4
+{
+	states = ("true" "false" );
+	position = (278 -323);
+	ismapvariable = "false";
+	ID = "variable9";
+	label = "test4";
+	diagnosistype = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node day2
+{
+	states = ("infected" "clean" );
+	position = (64 -161);
+	ismapvariable = "false";
+	ID = "variable6";
+	label = "day2";
+	diagnosistype = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node test1
+{
+	states = ("true" "false" );
+	position = (279 -87);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable9";
+	label = "test1";
+	excludepolicy = "include whole CPT";
+}
+node day3
+{
+	states = ("infected" "clean" );
+	position = (64 -247);
+	diagnosistype = "AUXILIARY";
+	ismapvariable = "false";
+	ID = "variable6";
+	label = "day3";
+	excludepolicy = "include whole CPT";
+}
+node test5
+{
+	states = ("true" "false" );
+	position = (283 -415);
+	diagnosistype = "AUXILIARY";
+	ismapvariable = "false";
+	ID = "variable9";
+	label = "test5";
+	excludepolicy = "include whole CPT";
+}
+node day1
+{
+	states = ("infected" "clean" );
+	position = (64 -90);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable6";
+	label = "day1";
+	excludepolicy = "include whole CPT";
+}
+node day4
+{
+	states = ("infected" "clean" );
+	position = (65 -332);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable7";
+	label = "day4";
+	excludepolicy = "include whole CPT";
+}
+node test2
+{
+	states = ("true" "false" );
+	position = (278 -164);
+	diagnosistype = "AUXILIARY";
+	ismapvariable = "false";
+	ID = "variable9";
+	label = "test2";
+	excludepolicy = "include whole CPT";
+}
+node day5
+{
+	states = ("infected" "clean" );
+	position = (68 -411);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable8";
+	label = "day5";
+	excludepolicy = "include whole CPT";
+}
+node test3
+{
+	states = ("true" "false" );
+	position = (278 -241);
+	diagnosistype = "AUXILIARY";
+	ismapvariable = "false";
+	ID = "variable9";
+	label = "test3";
+	excludepolicy = "include whole CPT";
+}
+potential ( test4 | day4 )
+{
+	data = ((	0.99	0.01	)
+		(	0.05	0.95	));
+}
+potential ( day2 | day1 )
+{
+	data = ((	0.7	0.3	)
+		(	0.002	0.998	));
+}
+potential ( test1 | day1 )
+{
+	data = ((	0.99	0.01	)
+		(	0.05	0.95	));
+}
+potential ( day3 | day2 )
+{
+	data = ((	0.7	0.3	)
+		(	0.002	0.998	));
+}
+potential ( test5 | day5 )
+{
+	data = ((	0.99	0.01	)
+		(	0.05	0.95	));
+}
+potential ( day1 | )
+{
+	data = (	0.001	0.999	);
+}
+potential ( day4 | day3 )
+{
+	data = ((	0.7	0.3	)
+		(	0.002	0.998	));
+}
+potential ( test2 | day2 )
+{
+	data = ((	0.99	0.01	)
+		(	0.05	0.95	));
+}
+potential ( day5 | day4 )
+{
+	data = ((	0.7	0.3	)
+		(	0.002	0.998	));
+}
+potential ( test3 | day3 )
+{
+	data = ((	0.99	0.01	)
+		(	0.05	0.95	));
+}

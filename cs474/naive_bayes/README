@@ -1,0 +1,112 @@
+README
+
+[Author]
+by Tumsa Musa | tmusa@iastate.edu
+
+~
+
+[Preface]
+
+How to Read this document:
+Read the section [compile&run] to see the steps for compiling & running
+Read the section [notes] for relevant notes that graders should be aware of
+Read the section [other-documents] for related documents
+ 
+~
+
+[compile&run]
+
+Step 1:
+Confirm that the directory structure is correct. 
+There should be one folder inside the top level folder ('naive_bayes_tmusa')
+titled 'naive_bayes' inside that folder there should be the source files 
+{'NaiveBayes.java', 'Document.java', 'NewsGroup.java'}
+
+when you unzip the zip file the structure may be 
+
+/naive_bayes_tmusa/naive_bayes_tmusa/naive_bayes
+                   ^
+if the structure is like that then you should run the commands from 
+and place the csv files within the 'naive_bayes_tmusa' that is 
+directly above the 'naive_bayes' folder 
+(marked with a carrot in the path above)
+
+
+You will absolutely need to put the files csv files into the folder
+'naive_bayes_tmusa' that is above the 'naive_bayes' folder. 
+I did not submit copies of those files because I assume you may test 
+with different files. 
+
+Step 2:
+run the following command inside the directory 'naive_bayes' to compile the
+code:
+
+javac *
+
+Step 3:
+Copy the following files:
+
+{vocabulary.txt map.csv train_label.csv train_data.csv 
+test_label.csv test_data.csv}
+
+into the folder directly above the 'naive_bayes' folder 
+(top level folder of download)
+
+Step 4:
+From the top level folder run the following command to run the program:
+
+java naive_bayes.NaiveBayes vocabulary.txt map.csv train_label.csv train_data.csv test_label.csv test_data.csv
+
+It is important that the files are in the correct order and that the command
+is run with java naive_bayes.NaiveBayes because the main file is in the package
+'naive_bayes'. 
+
+If you would like assistance with steps 1-4 please contact me at my email
+
+Step 5:
+This program will output to the terminal the required output described in the 
+lab1.pdf
+
+Also it generates two files:
+ accuracy.txt  | with the accuracy information that were outputed
+ confusion.txt | with the confusion matricies that were outputed 
+
+Use these files for reviewing the data after the code has finished running. 
+The labreport for this lab is in labreport.txt just pop that open and start 
+reading. 
+
+~
+
+[notes]
+The bayesian estimator is implemented pretty much exactly as described in the 
+lab1 pdf
+
+The MLE estimator is implemented primarily like the described in the pdf except
+that since we are calculating the logs of the estimation I needed to handle the
+zero estimation issue. For that purpose I looked to the sum of multiplications
+formula for the MLE estimator and realized that in that formula a single zero 
+estimation results in a zero result. Which is what I have my estimator imitate.
+In the situation that all the groups recieve a zero liklihood under the MLE 
+then I randomly guess. 
+
+The random guess is weighted using the information about the priors, so groups
+with larger priors will have a better chance of being choosen. 
+
+During my own testing I found this to be the best option and gives me a
+roughly 10% accuracy.  
+
+Also I tested the training data for fun using the MLE estimator and I got 99%
+accuracy. I got 95% accuracy with the bayesian. 
+
+The only thing I regret is that I couldn't get the matrix to print out evenly!
+
+Thanks for grading!
+
+~
+
+[other-documents]
+ accuracy.txt  | with the accuracy information that were outputed
+ confusion.txt | with the confusion matricies that were outputed 
+ labreport.txt | with the lab report
+
+~eof

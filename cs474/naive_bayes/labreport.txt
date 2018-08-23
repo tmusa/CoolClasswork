@@ -1,0 +1,57 @@
+LAB_REPORT
+
+[Author]
+Tumsa Musa | tmusa@iastate.edu
+
+[Content]
+  2.1   q: Observations of P_mle(w_k | omega_j) vs P_be(w_k | omega_j)
+  2.2.2 q: Compare results of the running model against Test & Training (BE)
+        q: Repeat experiments with MLE estimator and compare against 2.2.2
+           which is better? Why? 
+
+[2.1]
+  q: What do I observer about the values of the two different types 
+     of estimators?
+  
+  a: Bayesian estimator usually produces values that are a bit smaller than 
+     the Maximum likelihood estimator but it won't produce an estimate of 0 for
+     words that have zero occurance within the newsgroup. 
+
+[2.2.2]
+  q: Observations of running the model against test & training with the BE
+  
+  a: The training accuracy is much higher than the test accuracy however test
+     still isn't bad. .95 compared to .79. I think there are purposes where 4/5
+     accuracy is okay. The thing is that there were clearly some classes that 
+     performed better during the test (not compared to the training). 
+     
+     Like during the test it was clear certain classes performed better than
+     others. comp.os.ms-windows.misc had a 52% accuracy while rec.sport.hockey
+     had 95%. I don't know if this has to do with the vocabulary of the two
+     classes or the number of training documents in the classes.
+     
+     It's interesting though. 
+     
+  q: Testing again with the MLE & comparing it to previous results. 
+  
+  a: The MLE had abysmal results against the test data set. Absolute trash. 
+     Overall it was better than random. ~10% accuracy, but there were groups
+     that performed worse than random. 
+     
+     The reason why the MLE could be better than Bayesian for the Training
+     (99% accuracy) but nearly pure garbage for the Test data is because of the
+     zero likelihood problem that MLE's suffer from. If there's even one word
+     that is the test document but doesn't occur within any group then that group gets
+     a 'zero' likelihood. 
+     
+     The vocabulary of the training data is a strict subset of the vocabulary 
+     of the whole 20newsgroups dataset. Most of the training samples have at
+     least one word that won't be found within the vocabulary. Therefore most 
+     of the time the MLE basically defaults to a random guess. 
+     
+     The other thing is that you can't just ignore zeros either. I tried that
+     and it results in an even worse accuracy because there ends up being a lot
+     of mis-classifications. 
+
+~eof
+   

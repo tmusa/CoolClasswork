@@ -1,0 +1,70 @@
+Overall Accuaracy :: Training: 0.9502174105954388
+Class Accuracy:
+alt.atheism: 0.98125
+comp.graphics: 0.9242685025817556
+comp.os.ms-windows.misc: 0.8986013986013986
+comp.sys.ibm.pc.hardware: 0.9369676320272572
+comp.sys.mac.hardware: 0.96
+comp.windows.x: 0.9341216216216216
+misc.forsale: 0.8316151202749141
+rec.autos: 0.9611486486486487
+rec.motorcycles: 0.9748322147651006
+rec.sport.baseball: 0.9764309764309764
+rec.sport.hockey: 0.9782608695652174
+sci.crypt: 0.9814814814814815
+sci.electronics: 0.937394247038917
+sci.med: 0.9764309764309764
+sci.space: 0.9814502529510961
+soc.religion.christian: 0.9816360601001669
+talk.politics.guns: 0.9889908256880734
+talk.politics.mideast: 0.9663120567375887
+talk.politics.misc: 0.9633620689655172
+talk.religion.misc: 0.8351063829787234
+
+
+Overall Accuaracy :: TestMLE: 0.10659560293137908
+Class Accuracy:
+alt.atheism: 0.07547169811320754
+comp.graphics: 0.11568123393316196
+comp.os.ms-windows.misc: 0.12531969309462915
+comp.sys.ibm.pc.hardware: 0.11989795918367346
+comp.sys.mac.hardware: 0.08877284595300261
+comp.windows.x: 0.12307692307692308
+misc.forsale: 0.17277486910994763
+rec.autos: 0.09873417721518987
+rec.motorcycles: 0.10327455919395466
+rec.sport.baseball: 0.12342569269521411
+rec.sport.hockey: 0.14536340852130325
+sci.crypt: 0.11139240506329114
+sci.electronics: 0.089058524173028
+sci.med: 0.08651399491094147
+sci.space: 0.09948979591836735
+soc.religion.christian: 0.12814070351758794
+talk.politics.guns: 0.08791208791208792
+talk.politics.mideast: 0.07180851063829788
+talk.politics.misc: 0.07096774193548387
+talk.religion.misc: 0.06374501992031872
+
+
+Overall Accuaracy :: TestBayesian: 0.7912058627581612
+Class Accuracy:
+alt.atheism: 0.779874213836478
+comp.graphics: 0.7686375321336761
+comp.os.ms-windows.misc: 0.5294117647058824
+comp.sys.ibm.pc.hardware: 0.7729591836734694
+comp.sys.mac.hardware: 0.7336814621409922
+comp.windows.x: 0.7692307692307693
+misc.forsale: 0.6884816753926701
+rec.autos: 0.8886075949367088
+rec.motorcycles: 0.9042821158690176
+rec.sport.baseball: 0.906801007556675
+rec.sport.hockey: 0.9523809523809523
+sci.crypt: 0.9037974683544304
+sci.electronics: 0.6717557251908397
+sci.med: 0.8320610687022901
+sci.space: 0.8724489795918368
+soc.religion.christian: 0.9346733668341709
+talk.politics.guns: 0.9065934065934066
+talk.politics.mideast: 0.8324468085106383
+talk.politics.misc: 0.5838709677419355
+talk.religion.misc: 0.40239043824701193

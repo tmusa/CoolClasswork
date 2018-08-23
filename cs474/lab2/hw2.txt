@@ -1,0 +1,93 @@
+﻿Author: Tumsa Musa | tmusa@iastate.edu
+HW 2 
+<For experimental results see experimental.pdf | please read README first>
+Q1: 
+	For the voting records dataset the rules make sense to me. In particular
+	what is most interesting is the rules that are missing from this tree. These
+	records show a democrat majority house of representatives under a republican 
+	president (Ronald Regan-1984). If the political climate was as dysfunctional 
+	then as it is now then it doesn't surprise me that the nodes that ended up 
+	in the tree had to do with health-care, business, the budget, and weapons. 
+	Those are still divisive issues along party lines like they are today. It 
+	doesn't surprise me that something titled "handicapped infants" didn't have a 
+	big divide along party lines. 
+
+	For the cancer dataset it is very easy to understand why the uniformity of
+	cell size, the uniformity of cell shape, and clump thickness ended up being 
+	nodes in the tree. Cancer cells tend to vary in cell size, shape, and clump
+	together in multilayer (thick), while benign cells tend not to vary as much in
+	shape, or size, and tend to group in mono-layers (thin). These categories seem 
+	to be clearly divergent between the two groups so it makes sense that they 
+	became nodes in the tree.
+
+	Trees:
+		Please see problem #1 of  experimental.pdf
+Q2:
+
+	p1 : 96.0526
+	p2 : 94.382
+	p3 : 97.8022
+	p4 : 94.9495
+	p5 : 97.4026
+
+	mean : 96.1178
+	std_deviation : 1.48913
+	95 % confidence interval: 96.1178 +/- 1.960 * (1.48913/ sqrt(5)) 
+		= [94.8125, 97.4231]
+
+	Trees:
+		Please see folds [0..4] (corresponding to [p1..p4]) of the problem #2
+		section of experimental.pdf
+		------------------
+
+	Analysis:
+	
+	<Prompt>Do the ﬁve trees diﬀer with each other and with the tree 
+		constructed using all the data?
+	
+	Yes, they do. I have included all five trees and the original tree for your
+	observation. The five trees do have some differences. Sometimes they have 
+	different nodes compared to the full tree, some have the same nodes at 
+	different heights. This is because the training sets were random subsets 
+	of the full training set. When you train with different data it makes 
+	sense that the tree is different. 
+
+Q3:
+	p1: 97.8417 %
+	p2: 94.2857 %
+	p3: 93.3333 %
+	p4: 96   %
+	p5: 95  %
+	
+	mean : 95.2921 %
+	std_deviation : 1.72747
+	95 % confidence interval: 95.2921 +/- 1.960 * (1.72747/ sqrt(5)) 
+		= [93.7779, 96.8063]
+		
+	Trees: 
+		Please see folds [0..4] (corresponding to [p1..p4]) of the problem #3
+		section of experimental.pdf
+		------------------
+		
+	Analysis:
+	
+	<Prompt>Do the ﬁve trees diﬀer with each other and with the tree 
+		constructed using all the data?
+	
+	Yes. The five trees once again differ from one another for the same reasons
+	as previously stated. Different data builds a different tree. What's more 
+	interesting is that the nodes that are similar between the five trees are
+	most likely the most important attributes to look at when determining 
+	malignant vs. benign cancerous tumors. 
+	
+Q4:
+	<House Votes Dataset> : 96.3218 % accuracy 
+	<Breast Cancer Dataset> : 93.9914 % accuracy 
+	
+	Analysis:
+	After 5-fold cross validation and missing value replacement the mean 
+	accuracy was well within the 95% confidence range we established. 
+	Therefore the change from missing data to filling in that data was not 
+	significant. 
+	
+	

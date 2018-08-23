@@ -1,0 +1,1279 @@
+Author: Tumsa Musa | tmusa@iastate.edu
+HW 2 
+<For experimental analysis see report.pdf | please read README first>
+
+This document is the experimental results of every experiment. All experiments
+were run with a seed. See README for more information. 
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+<Problem 1> Learning J48 decision trees with both datasets
+	>test training data against training data 
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+....>Breast Cancer Wisconsin (Original) Data Set<
+
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     breast-cancer-wisconsin-data_fix
+Instances:    699
+Attributes:   10
+              Clump Thickness               
+              Uniformity of Cell Size       
+              Uniformity of Cell Shape      
+              Marginal Adhesion             
+              Single Epithelial Cell Size   
+              Bare Nuclei      
+              Bland Chromatin               
+              Normal Nucleoli    
+              Mitoses      
+              Class
+Test mode:    evaluate on training data
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+Uniformity of Cell Size        <= 2
+|   Bare Nuclei       <= 3: benign (405.39/2.0)
+|   Bare Nuclei       > 3
+|   |   Clump Thickness                <= 3: benign (11.55)
+|   |   Clump Thickness                > 3
+|   |   |   Bland Chromatin                <= 2
+|   |   |   |   Marginal Adhesion              <= 3: malignant (2.0)
+|   |   |   |   Marginal Adhesion              > 3: benign (2.0)
+|   |   |   Bland Chromatin                > 2: malignant (8.06/0.06)
+Uniformity of Cell Size        > 2
+|   Uniformity of Cell Shape       <= 2
+|   |   Clump Thickness                <= 5: benign (19.0/1.0)
+|   |   Clump Thickness                > 5: malignant (4.0)
+|   Uniformity of Cell Shape       > 2
+|   |   Uniformity of Cell Size        <= 4
+|   |   |   Bare Nuclei       <= 2
+|   |   |   |   Marginal Adhesion              <= 3: benign (11.41/1.21)
+|   |   |   |   Marginal Adhesion              > 3: malignant (3.0)
+|   |   |   Bare Nuclei       > 2
+|   |   |   |   Clump Thickness                <= 6
+|   |   |   |   |   Uniformity of Cell Size        <= 3: malignant (13.0/2.0)
+|   |   |   |   |   Uniformity of Cell Size        > 3
+|   |   |   |   |   |   Marginal Adhesion              <= 5: benign (5.79/1.0)
+|   |   |   |   |   |   Marginal Adhesion              > 5: malignant (5.0)
+|   |   |   |   Clump Thickness                > 6: malignant (31.79/1.0)
+|   |   Uniformity of Cell Size        > 4: malignant (177.0/5.0)
+
+Number of Leaves  : 	14
+
+Size of the tree : 	27
+
+
+Time taken to build model: 0.01 seconds
+
+=== Evaluation on training set ===
+
+Time taken to test model on training data: 0 seconds
+
+=== Summary ===
+
+Correctly Classified Instances         686               98.1402 %
+Incorrectly Classified Instances        13                1.8598 %
+Kappa statistic                          0.959 
+Mean absolute error                      0.0355
+Root mean squared error                  0.1324
+Relative absolute error                  7.8614 %
+Root relative squared error             27.8462 %
+Total Number of Instances              699     
+
+=== Detailed Accuracy By Class ===
+
+ TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+ 0.983    0.021    0.989      0.983    0.986      0.959    0.989     0.991     benign
+ 0.979    0.017    0.967      0.979    0.973      0.959    0.989     0.971     malignant
+ 0.981    0.020    0.981      0.981    0.981      0.959    0.989     0.984     
+Weighted Avg. is last row
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 450   8 |   a = benign
+   5 236 |   b = malignant
+-------------------------------------------------------------------------------
+....>Congressional Voting Records Data Set<
+
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     house-votes-84-data
+Instances:    435
+Attributes:   17
+              Class Name
+              handicapped-infants
+              water-project-cost-sharing
+              adoption-of-the-budget-resolution
+              physician-fee-freeze
+              el-salvador-aid
+              religious-groups-in-schools
+              anti-satellite-test-ban
+              aid-to-nicaraguan-contras
+              mx-missile
+              immigration
+              synfuels-corporation-cutback
+              education-spending
+              superfund-right-to-sue
+              crime
+              duty-free-exports
+              export-administration-act-south-africa
+Test mode:    evaluate on training data
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+physician-fee-freeze = y
+|   synfuels-corporation-cutback = n: republican (145.71/4.0)
+|   synfuels-corporation-cutback = y
+|   |   mx-missile = n
+|   |   |   adoption-of-the-budget-resolution = n: republican (22.61/3.32)
+|   |   |   adoption-of-the-budget-resolution = y
+|   |   |   |   anti-satellite-test-ban = n: democrat (5.04/0.02)
+|   |   |   |   anti-satellite-test-ban = y: republican (2.21)
+|   |   mx-missile = y: democrat (6.03/1.03)
+physician-fee-freeze = n: democrat (253.41/3.75)
+
+Number of Leaves  : 	6
+
+Size of the tree : 	11
+
+
+Time taken to build model: 0.06 seconds
+
+=== Evaluation on training set ===
+
+Time taken to test model on training data: 0 seconds
+
+=== Summary ===
+
+Correctly Classified Instances         423               97.2414 %
+Incorrectly Classified Instances        12                2.7586 %
+Kappa statistic                          0.9418
+Mean absolute error                      0.0519
+Root mean squared error                  0.1506
+Relative absolute error                 10.9481 %
+Root relative squared error             30.9353 %
+Total Number of Instances              435     
+
+=== Detailed Accuracy By Class ===
+
+TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+0.964    0.022    0.964      0.964    0.964      0.942    0.986     0.970     republican
+0.978    0.036    0.978      0.978    0.978      0.942    0.986     0.987     democrat
+0.972    0.031    0.972      0.972    0.972      0.942    0.986     0.981     
+Weighted Avg. is last row
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 162   6 |   a = republican
+   6 261 |   b = democrat
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+<Problem 2> Five-fold cross-validation J48 decision trees with voting data 
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+....>Fold 0<
+
+=== Run information ===
+
+Scheme:       weka.classifiers.misc.InputMappedClassifier -I -trim -W weka.classifiers.trees.J48 -- -C 0.25 -M 2
+Relation:     trainhouse-votes-84-data0
+Instances:    359
+Attributes:   17
+              Class Name
+              handicapped-infants
+              water-project-cost-sharing
+              adoption-of-the-budget-resolution
+              physician-fee-freeze
+              el-salvador-aid
+              religious-groups-in-schools
+              anti-satellite-test-ban
+              aid-to-nicaraguan-contras
+              mx-missile
+              immigration
+              synfuels-corporation-cutback
+              education-spending
+              superfund-right-to-sue
+              crime
+              duty-free-exports
+              export-administration-act-south-africa
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+InputMappedClassifier:
+
+J48 pruned tree
+------------------
+
+physician-fee-freeze = y
+|   synfuels-corporation-cutback = n: republican (117.44/3.98)
+|   synfuels-corporation-cutback = y
+|   |   mx-missile = n
+|   |   |   adoption-of-the-budget-resolution = n: republican (19.42/3.31)
+|   |   |   adoption-of-the-budget-resolution = y: democrat (5.82/1.23)
+|   |   mx-missile = y: democrat (4.0/0.02)
+physician-fee-freeze = n: democrat (212.32/3.18)
+
+Number of Leaves  : 	5
+
+Size of the tree : 	9
+
+Attribute mappings:
+
+Model attributes                                  	    Incoming attributes
+--------------------------------------------------	    ----------------
+(nominal) Class Name                              	--> 1 (nominal) Class Name
+(nominal) handicapped-infants                     	--> 2 (nominal) handicapped-infants
+(nominal) water-project-cost-sharing              	--> 3 (nominal) water-project-cost-sharing
+(nominal) adoption-of-the-budget-resolution       	--> 4 (nominal) adoption-of-the-budget-resolution
+(nominal) physician-fee-freeze                    	--> 5 (nominal) physician-fee-freeze
+(nominal) el-salvador-aid                         	--> 6 (nominal) el-salvador-aid
+(nominal) religious-groups-in-schools             	--> 7 (nominal) religious-groups-in-schools
+(nominal) anti-satellite-test-ban                 	--> 8 (nominal) anti-satellite-test-ban
+(nominal) aid-to-nicaraguan-contras               	--> 9 (nominal) aid-to-nicaraguan-contras
+(nominal) mx-missile                              	--> 10 (nominal) mx-missile
+(nominal) immigration                             	--> 11 (nominal) immigration
+(nominal) synfuels-corporation-cutback            	--> 12 (nominal) synfuels-corporation-cutback
+(nominal) education-spending                      	--> 13 (nominal) education-spending
+(nominal) superfund-right-to-sue                  	--> 14 (nominal) superfund-right-to-sue
+(nominal) crime                                   	--> 15 (nominal) crime
+(nominal) duty-free-exports                       	--> 16 (nominal) duty-free-exports
+(nominal) export-administration-act-south-africa  	--> 17 (nominal) export-administration-act-south-africa
+
+
+Time taken to build model: 0.01 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0.03 seconds
+
+=== Summary ===
+
+Correctly Classified Instances          73               96.0526 %
+Incorrectly Classified Instances         3                3.9474 %
+Kappa statistic                          0.9195
+Mean absolute error                      0.0601
+Root mean squared error                  0.1665
+Relative absolute error                 12.3492 %
+Root relative squared error             33.1212 %
+Total Number of Instances               76     
+
+=== Detailed Accuracy By Class ===
+
+TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+0.912    0.000    1.000      0.912    0.954      0.922    0.971     0.984     republican
+1.000    0.088    0.933      1.000    0.966      0.922    0.971     0.965     democrat
+0.961    0.049    0.963      0.961    0.960      0.922    0.971     0.973     
+Weighted Avg. is last row
+
+=== Confusion Matrix ===
+
+  a  b   <-- classified as
+ 31  3 |  a = republican
+  0 42 |  b = democrat
+-------------------------------------------------------------------------------
+....<Fold 1>
+=== Run information ===
+
+Scheme:       weka.classifiers.misc.InputMappedClassifier -I -trim -W weka.classifiers.trees.J48 -- -C 0.25 -M 2
+Relation:     trainhouse-votes-84-data1
+Instances:    346
+Attributes:   17
+              Class Name
+              handicapped-infants
+              water-project-cost-sharing
+              adoption-of-the-budget-resolution
+              physician-fee-freeze
+              el-salvador-aid
+              religious-groups-in-schools
+              anti-satellite-test-ban
+              aid-to-nicaraguan-contras
+              mx-missile
+              immigration
+              synfuels-corporation-cutback
+              education-spending
+              superfund-right-to-sue
+              crime
+              duty-free-exports
+              export-administration-act-south-africa
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+InputMappedClassifier:
+
+J48 pruned tree
+------------------
+
+physician-fee-freeze = y
+|   synfuels-corporation-cutback = n: republican (120.74/3.7)
+|   synfuels-corporation-cutback = y
+|   |   duty-free-exports = n
+|   |   |   immigration = y: republican (9.87/0.1)
+|   |   |   immigration = n
+|   |   |   |   mx-missile = n
+|   |   |   |   |   adoption-of-the-budget-resolution = n: republican (8.6/2.33)
+|   |   |   |   |   adoption-of-the-budget-resolution = y: democrat (2.54/0.01)
+|   |   |   |   mx-missile = y: democrat (2.43/0.01)
+|   |   duty-free-exports = y: democrat (3.07/0.15)
+physician-fee-freeze = n: democrat (198.74/3.72)
+
+Number of Leaves  : 	7
+
+Size of the tree : 	13
+
+Attribute mappings:
+
+Model attributes                                  	    Incoming attributes
+--------------------------------------------------	    ----------------
+(nominal) Class Name                              	--> 1 (nominal) Class Name
+(nominal) handicapped-infants                     	--> 2 (nominal) handicapped-infants
+(nominal) water-project-cost-sharing              	--> 3 (nominal) water-project-cost-sharing
+(nominal) adoption-of-the-budget-resolution       	--> 4 (nominal) adoption-of-the-budget-resolution
+(nominal) physician-fee-freeze                    	--> 5 (nominal) physician-fee-freeze
+(nominal) el-salvador-aid                         	--> 6 (nominal) el-salvador-aid
+(nominal) religious-groups-in-schools             	--> 7 (nominal) religious-groups-in-schools
+(nominal) anti-satellite-test-ban                 	--> 8 (nominal) anti-satellite-test-ban
+(nominal) aid-to-nicaraguan-contras               	--> 9 (nominal) aid-to-nicaraguan-contras
+(nominal) mx-missile                              	--> 10 (nominal) mx-missile
+(nominal) immigration                             	--> 11 (nominal) immigration
+(nominal) synfuels-corporation-cutback            	--> 12 (nominal) synfuels-corporation-cutback
+(nominal) education-spending                      	--> 13 (nominal) education-spending
+(nominal) superfund-right-to-sue                  	--> 14 (nominal) superfund-right-to-sue
+(nominal) crime                                   	--> 15 (nominal) crime
+(nominal) duty-free-exports                       	--> 16 (nominal) duty-free-exports
+(nominal) export-administration-act-south-africa  	--> 17 (nominal) export-administration-act-south-africa
+
+
+Time taken to build model: 0 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0 seconds
+
+=== Summary ===
+
+Correctly Classified Instances          84               94.382  %
+Incorrectly Classified Instances         5                5.618  %
+Kappa statistic                          0.8772
+Mean absolute error                      0.0863
+Root mean squared error                  0.2309
+Relative absolute error                 18.406  %
+Root relative squared error             48.2143 %
+Total Number of Instances               89     
+
+=== Detailed Accuracy By Class ===
+
+TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+0.935    0.052    0.906      0.935    0.921      0.877    0.963     0.902     republican
+0.948    0.065    0.965      0.948    0.957      0.877    0.963     0.986     democrat
+0.944    0.060    0.944      0.944    0.944      0.877    0.963     0.957     
+Weighted Avg. is last row
+
+=== Confusion Matrix ===
+
+  a  b   <-- classified as
+ 29  2 |  a = republican
+  3 55 |  b = democrat
+
+-------------------------------------------------------------------------------
+....<Fold 2>
+
+=== Run information ===
+
+Scheme:       weka.classifiers.misc.InputMappedClassifier -I -trim -W weka.classifiers.trees.J48 -- -C 0.25 -M 2
+Relation:     trainhouse-votes-84-data2
+Instances:    344
+Attributes:   17
+              Class Name
+              handicapped-infants
+              water-project-cost-sharing
+              adoption-of-the-budget-resolution
+              physician-fee-freeze
+              el-salvador-aid
+              religious-groups-in-schools
+              anti-satellite-test-ban
+              aid-to-nicaraguan-contras
+              mx-missile
+              immigration
+              synfuels-corporation-cutback
+              education-spending
+              superfund-right-to-sue
+              crime
+              duty-free-exports
+              export-administration-act-south-africa
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+InputMappedClassifier:
+
+J48 pruned tree
+------------------
+
+physician-fee-freeze = y
+|   synfuels-corporation-cutback = n: republican (116.52/4.02)
+|   synfuels-corporation-cutback = y
+|   |   mx-missile = n
+|   |   |   adoption-of-the-budget-resolution = n: republican (17.39/2.32)
+|   |   |   adoption-of-the-budget-resolution = y
+|   |   |   |   anti-satellite-test-ban = n: democrat (3.63/0.02)
+|   |   |   |   anti-satellite-test-ban = y: republican (2.21)
+|   |   mx-missile = y: democrat (5.04/1.03)
+physician-fee-freeze = n: democrat (199.21/3.16)
+
+Number of Leaves  : 	6
+
+Size of the tree : 	11
+
+Attribute mappings:
+
+Model attributes                                  	    Incoming attributes
+--------------------------------------------------	    ----------------
+(nominal) Class Name                              	--> 1 (nominal) Class Name
+(nominal) handicapped-infants                     	--> 2 (nominal) handicapped-infants
+(nominal) water-project-cost-sharing              	--> 3 (nominal) water-project-cost-sharing
+(nominal) adoption-of-the-budget-resolution       	--> 4 (nominal) adoption-of-the-budget-resolution
+(nominal) physician-fee-freeze                    	--> 5 (nominal) physician-fee-freeze
+(nominal) el-salvador-aid                         	--> 6 (nominal) el-salvador-aid
+(nominal) religious-groups-in-schools             	--> 7 (nominal) religious-groups-in-schools
+(nominal) anti-satellite-test-ban                 	--> 8 (nominal) anti-satellite-test-ban
+(nominal) aid-to-nicaraguan-contras               	--> 9 (nominal) aid-to-nicaraguan-contras
+(nominal) mx-missile                              	--> 10 (nominal) mx-missile
+(nominal) immigration                             	--> 11 (nominal) immigration
+(nominal) synfuels-corporation-cutback            	--> 12 (nominal) synfuels-corporation-cutback
+(nominal) education-spending                      	--> 13 (nominal) education-spending
+(nominal) superfund-right-to-sue                  	--> 14 (nominal) superfund-right-to-sue
+(nominal) crime                                   	--> 15 (nominal) crime
+(nominal) duty-free-exports                       	--> 16 (nominal) duty-free-exports
+(nominal) export-administration-act-south-africa  	--> 17 (nominal) export-administration-act-south-africa
+
+
+Time taken to build model: 0 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0 seconds
+
+=== Summary ===
+
+Correctly Classified Instances          89               97.8022 %
+Incorrectly Classified Instances         2                2.1978 %
+Kappa statistic                          0.953 
+Mean absolute error                      0.0447
+Root mean squared error                  0.1175
+Relative absolute error                  9.4584 %
+Root relative squared error             24.2646 %
+Total Number of Instances               91     
+
+=== Detailed Accuracy By Class ===
+
+TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+0.971    0.018    0.971      0.971    0.971      0.953    0.998     0.996     republican
+0.982    0.029    0.982      0.982    0.982      0.953    0.998     0.999     democrat
+0.978    0.025    0.978      0.978    0.978      0.953    0.998     0.998     
+Weighted Avg. is last row
+
+=== Confusion Matrix ===
+
+  a  b   <-- classified as
+ 33  1 |  a = republican
+  1 56 |  b = democrat
+
+-------------------------------------------------------------------------------
+....<Fold 3>
+
+=== Run information ===
+
+Scheme:       weka.classifiers.misc.InputMappedClassifier -I -trim -W weka.classifiers.trees.J48 -- -C 0.25 -M 2
+Relation:     trainhouse-votes-84-data3
+Instances:    336
+Attributes:   17
+              Class Name
+              handicapped-infants
+              water-project-cost-sharing
+              adoption-of-the-budget-resolution
+              physician-fee-freeze
+              el-salvador-aid
+              religious-groups-in-schools
+              anti-satellite-test-ban
+              aid-to-nicaraguan-contras
+              mx-missile
+              immigration
+              synfuels-corporation-cutback
+              education-spending
+              superfund-right-to-sue
+              crime
+              duty-free-exports
+              export-administration-act-south-africa
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+InputMappedClassifier:
+
+J48 pruned tree
+------------------
+
+physician-fee-freeze = y
+|   synfuels-corporation-cutback = y
+|   |   mx-missile = n
+|   |   |   adoption-of-the-budget-resolution = n: republican (15.27/2.32)
+|   |   |   adoption-of-the-budget-resolution = y: democrat (4.18/1.02)
+|   |   mx-missile = y: democrat (3.98/1.02)
+|   synfuels-corporation-cutback = n: republican (113.23/3.01)
+physician-fee-freeze = n: democrat (199.34/1.78)
+
+Number of Leaves  : 	5
+
+Size of the tree : 	9
+
+Attribute mappings:
+
+Model attributes                                  	    Incoming attributes
+--------------------------------------------------	    ----------------
+(nominal) Class Name                              	--> 1 (nominal) Class Name
+(nominal) handicapped-infants                     	--> 2 (nominal) handicapped-infants
+(nominal) water-project-cost-sharing              	--> 3 (nominal) water-project-cost-sharing
+(nominal) adoption-of-the-budget-resolution       	--> 4 (nominal) adoption-of-the-budget-resolution
+(nominal) physician-fee-freeze                    	--> 5 (nominal) physician-fee-freeze
+(nominal) el-salvador-aid                         	--> 6 (nominal) el-salvador-aid
+(nominal) religious-groups-in-schools             	--> 7 (nominal) religious-groups-in-schools
+(nominal) anti-satellite-test-ban                 	--> 8 (nominal) anti-satellite-test-ban
+(nominal) aid-to-nicaraguan-contras               	--> 9 (nominal) aid-to-nicaraguan-contras
+(nominal) mx-missile                              	--> 10 (nominal) mx-missile
+(nominal) immigration                             	--> 11 (nominal) immigration
+(nominal) synfuels-corporation-cutback            	--> 12 (nominal) synfuels-corporation-cutback
+(nominal) education-spending                      	--> 13 (nominal) education-spending
+(nominal) superfund-right-to-sue                  	--> 14 (nominal) superfund-right-to-sue
+(nominal) crime                                   	--> 15 (nominal) crime
+(nominal) duty-free-exports                       	--> 16 (nominal) duty-free-exports
+(nominal) export-administration-act-south-africa  	--> 17 (nominal) export-administration-act-south-africa
+
+
+Time taken to build model: 0 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0 seconds
+
+=== Summary ===
+
+Correctly Classified Instances          94               94.9495 %
+Incorrectly Classified Instances         5                5.0505 %
+Kappa statistic                          0.8955
+Mean absolute error                      0.0797
+Root mean squared error                  0.2157
+Relative absolute error                 16.6376 %
+Root relative squared error             43.6711 %
+Total Number of Instances               99     
+
+=== Detailed Accuracy By Class ===
+
+TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+0.927    0.034    0.950      0.927    0.938      0.896    0.960     0.936     republican
+0.966    0.073    0.949      0.966    0.957      0.896    0.960     0.953     democrat
+0.949    0.057    0.950      0.949    0.949      0.896    0.960     0.946     
+Weighted Avg. is last row
+
+=== Confusion Matrix ===
+
+  a  b   <-- classified as
+ 38  3 |  a = republican
+  2 56 |  b = democrat
+
+-------------------------------------------------------------------------------
+....<Fold 4>
+
+=== Run information ===
+
+Scheme:       weka.classifiers.misc.InputMappedClassifier -I -trim -W weka.classifiers.trees.J48 -- -C 0.25 -M 2
+Relation:     trainhouse-votes-84-data4
+Instances:    358
+Attributes:   17
+              Class Name
+              handicapped-infants
+              water-project-cost-sharing
+              adoption-of-the-budget-resolution
+              physician-fee-freeze
+              el-salvador-aid
+              religious-groups-in-schools
+              anti-satellite-test-ban
+              aid-to-nicaraguan-contras
+              mx-missile
+              immigration
+              synfuels-corporation-cutback
+              education-spending
+              superfund-right-to-sue
+              crime
+              duty-free-exports
+              export-administration-act-south-africa
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+InputMappedClassifier:
+
+J48 pruned tree
+------------------
+
+physician-fee-freeze = y
+|   synfuels-corporation-cutback = n: republican (120.43/3.67)
+|   synfuels-corporation-cutback = y
+|   |   mx-missile = n
+|   |   |   adoption-of-the-budget-resolution = n: republican (19.18/3.32)
+|   |   |   adoption-of-the-budget-resolution = y: democrat (5.82/1.22)
+|   |   mx-missile = y: democrat (5.1/1.01)
+physician-fee-freeze = n: democrat (207.48/3.16)
+
+Number of Leaves  : 	5
+
+Size of the tree : 	9
+
+Attribute mappings:
+
+Model attributes                                  	    Incoming attributes
+--------------------------------------------------	    ----------------
+(nominal) Class Name                              	--> 1 (nominal) Class Name
+(nominal) handicapped-infants                     	--> 2 (nominal) handicapped-infants
+(nominal) water-project-cost-sharing              	--> 3 (nominal) water-project-cost-sharing
+(nominal) adoption-of-the-budget-resolution       	--> 4 (nominal) adoption-of-the-budget-resolution
+(nominal) physician-fee-freeze                    	--> 5 (nominal) physician-fee-freeze
+(nominal) el-salvador-aid                         	--> 6 (nominal) el-salvador-aid
+(nominal) religious-groups-in-schools             	--> 7 (nominal) religious-groups-in-schools
+(nominal) anti-satellite-test-ban                 	--> 8 (nominal) anti-satellite-test-ban
+(nominal) aid-to-nicaraguan-contras               	--> 9 (nominal) aid-to-nicaraguan-contras
+(nominal) mx-missile                              	--> 10 (nominal) mx-missile
+(nominal) immigration                             	--> 11 (nominal) immigration
+(nominal) synfuels-corporation-cutback            	--> 12 (nominal) synfuels-corporation-cutback
+(nominal) education-spending                      	--> 13 (nominal) education-spending
+(nominal) superfund-right-to-sue                  	--> 14 (nominal) superfund-right-to-sue
+(nominal) crime                                   	--> 15 (nominal) crime
+(nominal) duty-free-exports                       	--> 16 (nominal) duty-free-exports
+(nominal) export-administration-act-south-africa  	--> 17 (nominal) export-administration-act-south-africa
+
+
+Time taken to build model: 0 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0.01 seconds
+
+=== Summary ===
+
+Correctly Classified Instances          75               97.4026 %
+Incorrectly Classified Instances         2                2.5974 %
+Kappa statistic                          0.9447
+Mean absolute error                      0.0524
+Root mean squared error                  0.129 
+Relative absolute error                 11.0297 %
+Root relative squared error             26.457  %
+Total Number of Instances               77     
+
+=== Detailed Accuracy By Class ===
+
+TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+0.933    0.000    1.000      0.933    0.966      0.946    0.999     0.999     republican
+1.000    0.067    0.959      1.000    0.979      0.946    0.999     1.000     democrat
+0.974    0.041    0.975      0.974    0.974      0.946    0.999     0.999     
+Weighted Avg. is last row
+
+=== Confusion Matrix ===
+
+  a  b   <-- classified as
+ 28  2 |  a = republican
+  0 47 |  b = democrat
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+<Problem 3> Five-fold cross-validation J48 decision trees with cancer data 
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+....<Fold 0>
+
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     trainbreast-cancer-wisconsin-data0
+Instances:    560
+Attributes:   10
+              Clump Thickness               
+              Uniformity of Cell Size       
+              Uniformity of Cell Shape      
+              Marginal Adhesion             
+              Single Epithelial Cell Size   
+              Bare Nuclei      
+              Bland Chromatin               
+              Normal Nucleoli    
+              Mitoses      
+              Class
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+Uniformity of Cell Shape       <= 3
+|   Bland Chromatin                <= 3
+|   |   Bare Nuclei       <= 2: benign (317.38)
+|   |   Bare Nuclei       > 2
+|   |   |   Uniformity of Cell Shape       <= 2: benign (18.48/2.0)
+|   |   |   Uniformity of Cell Shape       > 2: malignant (5.14/1.14)
+|   Bland Chromatin                > 3
+|   |   Bare Nuclei       <= 2
+|   |   |   Mitoses       <= 5: benign (9.0)
+|   |   |   Mitoses       > 5: malignant (2.0)
+|   |   Bare Nuclei       > 2
+|   |   |   Uniformity of Cell Shape       <= 1: benign (3.0/1.0)
+|   |   |   Uniformity of Cell Shape       > 1: malignant (17.0)
+Uniformity of Cell Shape       > 3
+|   Uniformity of Cell Size        <= 4
+|   |   Bare Nuclei       <= 6
+|   |   |   Marginal Adhesion              <= 3
+|   |   |   |   Clump Thickness                <= 5: benign (8.43)
+|   |   |   |   Clump Thickness                > 5: malignant (3.0/1.0)
+|   |   |   Marginal Adhesion              > 3: malignant (8.0/1.0)
+|   |   Bare Nuclei       > 6: malignant (25.57/1.57)
+|   Uniformity of Cell Size        > 4: malignant (143.0/4.0)
+
+Number of Leaves  : 	12
+
+Size of the tree : 	23
+
+
+Time taken to build model: 0.01 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0 seconds
+
+=== Summary ===
+
+Correctly Classified Instances         136               97.8417 %
+Incorrectly Classified Instances         3                2.1583 %
+Kappa statistic                          0.9504
+Mean absolute error                      0.0441
+Root mean squared error                  0.1467
+Relative absolute error                  9.9221 %
+Root relative squared error             31.5812 %
+Total Number of Instances              139     
+
+=== Detailed Accuracy By Class ===
+
+TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+0.969    0.000    1.000      0.969    0.984      0.952    0.991     0.995     benign
+1.000    0.031    0.935      1.000    0.966      0.952    0.991     0.965     malignant
+0.978    0.010    0.980      0.978    0.979      0.952    0.991     0.986     
+Weighted Avg. is last row
+
+=== Confusion Matrix ===
+
+  a  b   <-- classified as
+ 93  3 |  a = benign
+  0 43 |  b = malignant
+
+-------------------------------------------------------------------------------
+....<Fold 1>
+
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     trainbreast-cancer-wisconsin-data1
+Instances:    559
+Attributes:   10
+              Clump Thickness               
+              Uniformity of Cell Size       
+              Uniformity of Cell Shape      
+              Marginal Adhesion             
+              Single Epithelial Cell Size   
+              Bare Nuclei      
+              Bland Chromatin               
+              Normal Nucleoli    
+              Mitoses      
+              Class
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+Uniformity of Cell Size        <= 2
+|   Bare Nuclei       <= 2: benign (313.35)
+|   Bare Nuclei       > 2
+|   |   Normal Nucleoli     <= 2
+|   |   |   Clump Thickness                <= 6: benign (19.65/1.0)
+|   |   |   Clump Thickness                > 6: malignant (2.0)
+|   |   Normal Nucleoli     > 2: malignant (6.0)
+Uniformity of Cell Size        > 2
+|   Uniformity of Cell Size        <= 4
+|   |   Bare Nuclei       <= 6
+|   |   |   Marginal Adhesion              <= 3
+|   |   |   |   Mitoses       <= 2: benign (25.06/2.53)
+|   |   |   |   Mitoses       > 2: malignant (3.0/1.0)
+|   |   |   Marginal Adhesion              > 3
+|   |   |   |   Uniformity of Cell Shape       <= 2: benign (2.0)
+|   |   |   |   Uniformity of Cell Shape       > 2: malignant (9.0/1.0)
+|   |   Bare Nuclei       > 6: malignant (34.94/2.47)
+|   Uniformity of Cell Size        > 4: malignant (144.0/4.0)
+
+Number of Leaves  : 	10
+
+Size of the tree : 	19
+
+
+Time taken to build model: 0 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0 seconds
+
+=== Summary ===
+
+Correctly Classified Instances         132               94.2857 %
+Incorrectly Classified Instances         8                5.7143 %
+Kappa statistic                          0.8691
+Mean absolute error                      0.0698
+Root mean squared error                  0.225 
+Relative absolute error                 15.5129 %
+Root relative squared error             47.622  %
+Total Number of Instances              140     
+
+=== Detailed Accuracy By Class ===
+
+TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+0.978    0.128    0.938      0.978    0.958      0.871    0.974     0.979     benign
+0.872    0.022    0.953      0.872    0.911      0.871    0.974     0.941     malignant
+0.943    0.092    0.943      0.943    0.942      0.871    0.974     0.966     
+Weighted Avg. is last row
+
+=== Confusion Matrix ===
+
+  a  b   <-- classified as
+ 91  2 |  a = benign
+  6 41 |  b = malignant
+
+-------------------------------------------------------------------------------
+....<Fold 2>
+
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     trainbreast-cancer-wisconsin-data2
+Instances:    564
+Attributes:   10
+              Clump Thickness               
+              Uniformity of Cell Size       
+              Uniformity of Cell Shape      
+              Marginal Adhesion             
+              Single Epithelial Cell Size   
+              Bare Nuclei      
+              Bland Chromatin               
+              Normal Nucleoli    
+              Mitoses      
+              Class
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+Uniformity of Cell Shape       <= 3
+|   Normal Nucleoli     <= 2
+|   |   Bare Nuclei       <= 2: benign (318.3)
+|   |   Bare Nuclei       > 2
+|   |   |   Clump Thickness                <= 5: benign (22.7/2.0)
+|   |   |   Clump Thickness                > 5: malignant (4.0)
+|   Normal Nucleoli     > 2
+|   |   Bare Nuclei       <= 1: benign (8.28)
+|   |   Bare Nuclei       > 1
+|   |   |   Clump Thickness                <= 5
+|   |   |   |   Uniformity of Cell Shape       <= 2: benign (2.0)
+|   |   |   |   Uniformity of Cell Shape       > 2: malignant (6.72/1.72)
+|   |   |   Clump Thickness                > 5: malignant (13.0)
+Uniformity of Cell Shape       > 3
+|   Marginal Adhesion              <= 1
+|   |   Clump Thickness                <= 6
+|   |   |   Normal Nucleoli     <= 8: benign (7.0)
+|   |   |   Normal Nucleoli     > 8: malignant (3.0)
+|   |   Clump Thickness                > 6: malignant (14.0)
+|   Marginal Adhesion              > 1: malignant (165.0/7.0)
+
+Number of Leaves  : 	11
+
+Size of the tree : 	21
+
+
+Time taken to build model: 0 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0 seconds
+
+=== Summary ===
+
+Correctly Classified Instances         126               93.3333 %
+Incorrectly Classified Instances         9                6.6667 %
+Kappa statistic                          0.8455
+Mean absolute error                      0.0797
+Root mean squared error                  0.2492
+Relative absolute error                 17.9211 %
+Root relative squared error             53.6105 %
+Total Number of Instances              135     
+
+=== Detailed Accuracy By Class ===
+
+TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+0.946    0.095    0.957      0.946    0.951      0.846    0.955     0.972     benign
+0.905    0.054    0.884      0.905    0.894      0.846    0.955     0.859     malignant
+0.933    0.082    0.934      0.933    0.934      0.846    0.955     0.937     
+Weighted Avg. is last row
+
+=== Confusion Matrix ===
+
+  a  b   <-- classified as
+ 88  5 |  a = benign
+  4 38 |  b = malignant
+
+-------------------------------------------------------------------------------
+....<Fold 3>
+
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     trainbreast-cancer-wisconsin-data3
+Instances:    549
+Attributes:   10
+              Clump Thickness               
+              Uniformity of Cell Size       
+              Uniformity of Cell Shape      
+              Marginal Adhesion             
+              Single Epithelial Cell Size   
+              Bare Nuclei      
+              Bland Chromatin               
+              Normal Nucleoli    
+              Mitoses      
+              Class
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+Uniformity of Cell Shape       <= 2
+|   Bare Nuclei       <= 1: benign (289.29)
+|   Bare Nuclei       > 1
+|   |   Clump Thickness                <= 5
+|   |   |   Marginal Adhesion              <= 2: benign (27.71)
+|   |   |   Marginal Adhesion              > 2
+|   |   |   |   Bare Nuclei       <= 4: benign (4.0)
+|   |   |   |   Bare Nuclei       > 4: malignant (2.0)
+|   |   Clump Thickness                > 5: malignant (5.0)
+Uniformity of Cell Shape       > 2
+|   Bland Chromatin                <= 2
+|   |   Bare Nuclei       <= 4: benign (20.8)
+|   |   Bare Nuclei       > 4: malignant (5.2/0.2)
+|   Bland Chromatin                > 2
+|   |   Uniformity of Cell Size        <= 4
+|   |   |   Bare Nuclei       <= 2
+|   |   |   |   Marginal Adhesion              <= 3
+|   |   |   |   |   Single Epithelial Cell Size    <= 4: benign (8.24/0.24)
+|   |   |   |   |   Single Epithelial Cell Size    > 4: malignant (3.0/1.0)
+|   |   |   |   Marginal Adhesion              > 3: malignant (3.0)
+|   |   |   Bare Nuclei       > 2: malignant (44.76/5.0)
+|   |   Uniformity of Cell Size        > 4: malignant (136.0/4.0)
+
+Number of Leaves  : 	12
+
+Size of the tree : 	23
+
+
+Time taken to build model: 0.02 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0 seconds
+
+=== Summary ===
+
+Correctly Classified Instances         144               96      %
+Incorrectly Classified Instances         6                4      %
+Kappa statistic                          0.9125
+Mean absolute error                      0.0557
+Root mean squared error                  0.1905
+Relative absolute error                 12.3171 %
+Root relative squared error             40.0208 %
+Total Number of Instances              150     
+
+=== Detailed Accuracy By Class ===
+
+TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+0.959    0.038    0.979      0.959    0.969      0.913    0.962     0.970     benign
+0.962    0.041    0.926      0.962    0.943      0.913    0.962     0.915     malignant
+0.960    0.039    0.961      0.960    0.960      0.913    0.962     0.951     
+Weighted Avg. is last row
+
+=== Confusion Matrix ===
+
+  a  b   <-- classified as
+ 94  4 |  a = benign
+  2 50 |  b = malignant
+
+-------------------------------------------------------------------------------
+....<Fold 4>
+
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     trainbreast-cancer-wisconsin-data4
+Instances:    559
+Attributes:   10
+              Clump Thickness               
+              Uniformity of Cell Size       
+              Uniformity of Cell Shape      
+              Marginal Adhesion             
+              Single Epithelial Cell Size   
+              Bare Nuclei      
+              Bland Chromatin               
+              Normal Nucleoli    
+              Mitoses      
+              Class
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+Uniformity of Cell Size        <= 2
+|   Clump Thickness                <= 5: benign (318.0/3.0)
+|   Clump Thickness                > 5
+|   |   Bare Nuclei       <= 2: benign (11.0/1.0)
+|   |   Bare Nuclei       > 2: malignant (7.0)
+Uniformity of Cell Size        > 2
+|   Bare Nuclei       <= 2
+|   |   Uniformity of Cell Size        <= 3: benign (20.0)
+|   |   Uniformity of Cell Size        > 3: malignant (18.87/2.52)
+|   Bare Nuclei       > 2: malignant (184.13/10.48)
+
+Number of Leaves  : 	6
+
+Size of the tree : 	11
+
+
+Time taken to build model: 0 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0 seconds
+
+=== Summary ===
+
+Correctly Classified Instances         133               95      %
+Incorrectly Classified Instances         7                5      %
+Kappa statistic                          0.8802
+Mean absolute error                      0.0746
+Root mean squared error                  0.2183
+Relative absolute error                 16.9491 %
+Root relative squared error             47.6822 %
+Total Number of Instances              140     
+
+=== Detailed Accuracy By Class ===
+
+TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+0.950    0.050    0.979      0.950    0.964      0.881    0.935     0.959     benign
+0.950    0.050    0.884      0.950    0.916      0.881    0.935     0.839     malignant
+0.950    0.050    0.952      0.950    0.951      0.881    0.935     0.924     
+Weighted Avg. is last row
+
+=== Confusion Matrix ===
+
+  a  b   <-- classified as
+ 95  5 |  a = benign
+  2 38 |  b = malignant
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+<Problem 4> Five-fold cross-validation J48 decision trees with both datasets
+	>using Weka to fill missing data and using Weka for five-fold validation
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+....>Breast Cancer Wisconsin (Original) Data Set<
+
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     breast-cancer-wisconsin-data_fix-weka.filters.unsupervised.attribute.ReplaceMissingValues
+Instances:    699
+Attributes:   10
+              Clump Thickness               
+              Uniformity of Cell Size       
+              Uniformity of Cell Shape      
+              Marginal Adhesion             
+              Single Epithelial Cell Size   
+              Bare Nuclei      
+              Bland Chromatin               
+              Normal Nucleoli    
+              Mitoses      
+              Class
+Test mode:    5-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+Uniformity of Cell Size        <= 2
+|   Bare Nuclei       <= 3.544656: benign (406.0/2.0)
+|   Bare Nuclei       > 3.544656
+|   |   Clump Thickness                <= 3: benign (11.0)
+|   |   Clump Thickness                > 3
+|   |   |   Bland Chromatin                <= 2
+|   |   |   |   Marginal Adhesion              <= 3: malignant (2.0)
+|   |   |   |   Marginal Adhesion              > 3: benign (2.0)
+|   |   |   Bland Chromatin                > 2: malignant (8.0)
+Uniformity of Cell Size        > 2
+|   Uniformity of Cell Shape       <= 2
+|   |   Clump Thickness                <= 5: benign (19.0/1.0)
+|   |   Clump Thickness                > 5: malignant (4.0)
+|   Uniformity of Cell Shape       > 2
+|   |   Uniformity of Cell Size        <= 4
+|   |   |   Bare Nuclei       <= 2
+|   |   |   |   Marginal Adhesion              <= 3: benign (11.0/1.0)
+|   |   |   |   Marginal Adhesion              > 3: malignant (3.0)
+|   |   |   Bare Nuclei       > 2
+|   |   |   |   Clump Thickness                <= 6
+|   |   |   |   |   Uniformity of Cell Size        <= 3: malignant (13.0/2.0)
+|   |   |   |   |   Uniformity of Cell Size        > 3
+|   |   |   |   |   |   Bare Nuclei       <= 6: benign (4.0)
+|   |   |   |   |   |   Bare Nuclei       > 6: malignant (7.0/1.0)
+|   |   |   |   Clump Thickness                > 6: malignant (32.0/1.0)
+|   |   Uniformity of Cell Size        > 4: malignant (177.0/5.0)
+
+Number of Leaves  : 	14
+
+Size of the tree : 	27
+
+
+Time taken to build model: 0 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances         657               93.9914 %
+Incorrectly Classified Instances        42                6.0086 %
+Kappa statistic                          0.8667
+Mean absolute error                      0.0723
+Root mean squared error                  0.238 
+Relative absolute error                 16.0044 %
+Root relative squared error             50.0673 %
+Total Number of Instances              699     
+
+=== Detailed Accuracy By Class ===
+
+TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+0.956    0.091    0.952      0.956    0.954      0.867    0.935     0.943     benign
+0.909    0.044    0.916      0.909    0.913      0.867    0.935     0.883     malignant
+0.940    0.075    0.940      0.940    0.940      0.867    0.935     0.923     
+Weighted Avg. is last row
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 438  20 |   a = benign
+  22 219 |   b = malignant
+
+....>Congressional Voting Records Data Set<
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     house-votes-84-data-weka.filters.unsupervised.attribute.ReplaceMissingValues
+Instances:    435
+Attributes:   17
+              Class Name
+              handicapped-infants
+              water-project-cost-sharing
+              adoption-of-the-budget-resolution
+              physician-fee-freeze
+              el-salvador-aid
+              religious-groups-in-schools
+              anti-satellite-test-ban
+              aid-to-nicaraguan-contras
+              mx-missile
+              immigration
+              synfuels-corporation-cutback
+              education-spending
+              superfund-right-to-sue
+              crime
+              duty-free-exports
+              export-administration-act-south-africa
+Test mode:    5-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+physician-fee-freeze = y
+|   synfuels-corporation-cutback = n: republican (145.0/3.0)
+|   synfuels-corporation-cutback = y
+|   |   mx-missile = n
+|   |   |   adoption-of-the-budget-resolution = n: republican (21.0/3.0)
+|   |   |   adoption-of-the-budget-resolution = y
+|   |   |   |   water-project-cost-sharing = y: democrat (4.0)
+|   |   |   |   water-project-cost-sharing = n: republican (2.0)
+|   |   mx-missile = y: democrat (5.0/1.0)
+physician-fee-freeze = n: democrat (258.0/5.0)
+
+Number of Leaves  : 	6
+
+Size of the tree : 	11
+
+
+Time taken to build model: 0 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances         419               96.3218 %
+Incorrectly Classified Instances        16                3.6782 %
+Kappa statistic                          0.9224
+Mean absolute error                      0.061 
+Root mean squared error                  0.1885
+Relative absolute error                 12.8693 %
+Root relative squared error             38.7223 %
+Total Number of Instances              435     
+
+=== Detailed Accuracy By Class ===
+
+TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+0.952    0.030    0.952      0.952    0.952      0.922    0.953     0.922     republican
+0.970    0.048    0.970      0.970    0.970      0.922    0.953     0.948     democrat
+0.963    0.041    0.963      0.963    0.963      0.922    0.953     0.938     
+Weighted Avg. is last row
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 160   8 |   a = republican
+   8 259 |   b = democrat
+

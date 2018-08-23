@@ -1,0 +1,64 @@
+Lab 5
+Tumsa Musa 
+COMS 474
+
+Bayesian Network Assignment 
+
+/* Questions (Q) , Queries (U) , and Answers (A) */
+
+------------
+Q:  What is the probability that the cow is infected in day k for k from 1 to 5
+U:  To answer this question I created the network in Cow.net then I set the 
+	values of the test nodes 
+		{(test1), (test2), (test3), (test4), (test5)} 
+	to  { positive, positive, negative, positive, positive} 
+	as given in the problem statement. Then I showed all the monitors and used
+	that to report the values in query mode.
+A:	Where k is the day's number:
+	k | % chance cow is infected
+	1 | 24.39							/* P(day1=infected | evidence) */
+	2 | 27.42							/* P(day2=infected | evidence) */
+	3 | 20.79							/* P(day3=infected | evidence) */
+	4 | 48.58							/* P(day4=infected | evidence) */
+	5 | 49.52							/* P(day5=infected | evidence) */
+------------
+Q:	What is the most likely states of the cow’s infection over the five days
+U:	I thought of this as an MPE problem. So given the test evidence what is the
+	most likely values of all the days. In query mode to solve this all you 
+	can instantiate the values and click MPE.
+A:	Where k is the day's number:
+	k | most likely state of cow's infection
+	1 | clean
+	2 | clean
+	3 | clean
+	4 | clean
+	5 | clean
+	
+	Also:
+	P(mpe | evidence) = 0.449030275
+	P(mpe, e)         = 0.000005884
+------------
+Q:	What is the most likely states of the cow’s infection over the last three 
+	days
+U:	I thought this was an MAP problem. So given the test evidence what is the
+	maximum a posterior for the last three days {(day3), (day4), (day5)}? To
+	solve this problem we have to enter the variable selection menu, select
+	the three days, then click the MAP button. (Both within the tools menu)
+A:	Where k is the day's number:
+	k | most likely state of cow's infection
+	3 | clean
+	4 | clean
+	5 | clean
+	
+	Also:
+	These are the probabilities using the exact calculations
+	P(map | evidence) = 0.494214831
+	P(map, evidence)  = 0.000006476
+------------
+
+/*Additional Discussion*/
+D:	These accurate tests could were more likely to be wrong because of the 
+	prior probability of infection on day 1 being so low. For example when
+	the prior probability is set to .01 all the days are predicted to be 
+	"infected".
+	
